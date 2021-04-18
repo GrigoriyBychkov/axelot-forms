@@ -1,0 +1,22 @@
+
+::ng-deep {
+  .group-classname {
+    display: flex;
+    padding: 25px;
+    margin: 10px;
+  }
+
+  .form-layout {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .buttons-block{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+  }
+}

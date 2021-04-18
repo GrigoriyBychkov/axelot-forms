@@ -1,27 +1,67 @@
-# AxelotApp
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
+# Form generator based on Formly & Angular Material
 
 ## Development server
 
+Run `Run ts-node` from ./API
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+### Task description
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+Задача.
 
-## Build
+Написать приложение: фронт на Angular 8 или выше, бэк  любыми удобными средствами (C#, Python, Node JS ит).
+Приложение должно демонстрировать пользователю экран следующий структуры:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+Поля ввода могут иметь тип Int, String, Boolean
+Поля формы и их названия должны генерироваться в реальном режиме времени на основании описания.
+Класс, описывающий форму должен иметь структуру, приведенную ниже. Названия свойств класса даны условно, сконструируйте класс самостоятельно на основании приведенного шаблона:
+class Form
+{
+  Column Column1;
+  Column Column2;
+}
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+class Column
+{
+  Input[] Inputs ;
+}
 
-## Running end-to-end tests
+class Input
+{
+  String ID;  // ID элемента формы
+  String InputType;  // Тип данных : «Int», «String», «Boolean»
+  String Text; Название поля ввода
+}
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Серверная часть должна публиковать два метода:
+Метод GetForm:
+HTTP метод: GET.   
+Без параметров. 
+Возвращает: описание формы, класс Form.
+Метод GetData: 
+HTTP метод: GET.   
+Без параметров. 
+Возвращает:  данные для формы, класс FormData.
 
-## Further help
+Класс, описывающий данные для формы должен иметь структуру, приведенную ниже. Названия свойств даны условно, сконструируйте класс самостоятельно на основании приведенного шаблона:
+class FormData
+{     
+    InputData[] Data;
+}
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+class FormData
+{     
+    String ID;  // ID поля ввода
+    String Value;  // Значение
+}
+
+
+
+По нажатию кнопки «Обновить форму» приложение должно вызывать метод сервера  GetForm, получать структуру формы и строить форму. Описание формы хранить на диске в виде файла.
+
+По нажатию кнопки «Обновить данные» приложение должно вызывать метод сервера  GetData и получать данные. Получив данные приложение должно найти на форме поля   ввода, чьи ID соответствуют именам свойств из массива данных и записать в них соответствующие значения. Если для какого-то из полей ввода не пришли данные, его необходимо очистить. 
+Данные хранить на диске в виде файла в любом удобном формате или генерировать на ходу случайным образом.
+
+```
